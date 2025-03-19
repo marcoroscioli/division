@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Division Game</title>
+<style>
+body { font-family: sans-serif; }
+#game { width: 400px; margin: 50px auto; text-align: center; }
+</style>
+</head>
+<body>
+
+<div id="game">
+  <h1>Division Fun!</h1>
+  <p>What is <span id="dividend"></span> ÷ <span id="divisor"></span> = ?</p>
+  <input type="number" id="answer">
+  <button onclick="checkAnswer()">Check Answer</button>
+  <p id="result"></p>
+</div>
+
+<script>
+  let dividend, divisor;
+  function generateProblem() {
+    dividend = Math.floor(Math.random() * 100) + 1; // Generates random number between 1 and 100
+    divisor = Math.floor(Math.random() * 10) + 1;   // Generates random number between 1 and 10 (divisor)
+    document.getElementById("dividend").innerText = dividend;
+    document.getElementById("divisor").innerText = divisor;
+    document.getElementById("answer").value = ""; // Clears the answer field
+    document.getElementById("result").innerText = ""; // Clears the result message
+  }
+
+  function checkAnswer() {
+    let userAnswer = parseInt(document.getElementById("answer").value);
+    let correctAnswer = Math.floor(dividend / divisor);
+    if (userAnswer === correctAnswer) {
+      document.getElementById("result").innerText = "Correct!";
+      generateProblem(); // Generates a new problem after correct answer.
+    } else {
+      document.getElementById("result").innerText = "Try again!";
+    }
+  }
+
+  generateProblem(); // Starts the game by generating first problem
+</script>
+
+</body>
+</html>
